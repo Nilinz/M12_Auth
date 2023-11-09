@@ -6,6 +6,7 @@
 
 ```
 docker run --name db-postgre -p 5432:5432 -e POSTGRES_PASSWORD=567234 -e POSTGRES_DB=contacts -d postgres
+```
 
 Запускаємо сервер:
 
@@ -18,6 +19,3 @@ uvicorn app.main:app --reload
 Для взаємодії з побудованим REST API, будемо використовувати Swagger документацію http://127.0.0.1:8000/doc
 
 
-alembic init migrations
-alembic revision --autogenerate -m 'Init'
-alembic upgrade head
