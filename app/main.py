@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends, status, Security
-from fastapi.security import OAuth2PasswordRequestForm, HTTPAuthorizationCredentials, HTTPBearer
+from fastapi.security import HTTPBearer
 from sqlalchemy.orm import Session
 from typing import List
 from datetime import timedelta
@@ -7,12 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from . import models, schemas, db
 from .db import get_db
+from routes import auth
 
 app = FastAPI()
-hash_handler = Hash()
 security = HTTPBearer()
 
-
+app.include_router(auth.router)
 # Enable CORS for all origins
 app.add_middleware(
     CORSMiddleware,
